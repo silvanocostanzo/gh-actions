@@ -1,22 +1,15 @@
 name: Main
 
 # Run when a PR is closed against master
-on:
-  pull_request:
-    types: [closed]
-    branches:
-      - master
+on: [push]
 
 jobs:
   create_docker_image:
     runs-on: ubuntu-latest
     name: Create and run a Go application
     steps:
-      - uses: actions/checkout@v2
-        name: Checkout
-      - id: 'Create Docker image'
-        name: 'Create Docker image'
-        uses: ./action.yaml
-      - id: 'Run Go application'
-        name: 'Run Go application'
-        run: 'go run main.go'
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build --tag gh_fetch .
+    - name: 'Run Go application'
+      run: 'docker run gh_fetch'
