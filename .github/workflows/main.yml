@@ -1,0 +1,20 @@
+name: Main
+
+# Run when a PR is closed against master
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - master
+
+jobs:
+  create_docker_image:
+    runs-on: ubuntu-latest
+    name: Create and run a Go application
+    steps:
+      - id: 'Create Docker image'
+        name: 'Create Docker image'
+        uses: silvanocostanzo/action@v1
+      - id: 'Run Go application'
+        name: 'Run Go application'
+        run: 'go run main.go'
