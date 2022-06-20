@@ -12,9 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Create and run a Go application
     steps:
+      - uses: actions/checkout@v2
+        name: Checkout
       - id: 'Create Docker image'
         name: 'Create Docker image'
-        uses: silvanocostanzo/action@v1
+        uses: ./action.yaml
       - id: 'Run Go application'
         name: 'Run Go application'
         run: 'go run main.go'
