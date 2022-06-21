@@ -18,5 +18,4 @@ jobs:
         steps:
             - name: super-step
               shell: sh
-              run: |
-                go run main.go
+              run: cd /app && go run main.go
