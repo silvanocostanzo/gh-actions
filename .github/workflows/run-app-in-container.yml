@@ -17,6 +17,6 @@ jobs:
                password: ${{ secrets.GITHUB_TOKEN }}
         steps:
             - name: super-step
-              shell: bash
+              shell: sh
               run: |
                 go run main.go
