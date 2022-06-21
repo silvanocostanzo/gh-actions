@@ -1,0 +1,22 @@
+name: Super Action
+
+# Here, this action will be enabled on all pushes.
+# Modify this to fit your needs.
+on:
+    push
+
+# Jobs section
+jobs:
+    # The job that will use the container image you just pushed to ghcr.io
+    super-job:
+        runs-on: ubuntu-18.04
+        container:
+            image: ghcr.io/silvanocostanzo/gh-actions:main
+            credentials:
+               username: ${{ github.actor }}
+               password: ${{ secrets.GITHUB_TOKEN }}
+        steps:
+            - name: super-step
+              shell: bash
+              run: |
+                go run main.go
